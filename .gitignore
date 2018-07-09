@@ -1,0 +1,10 @@
+.idea
+.vscode
+keys
+.DS_Store
+venv*
+
+*.iml
+*.retry
+*.pem
+

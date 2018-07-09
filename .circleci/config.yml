@@ -4,17 +4,16 @@ jobs:
     docker:
       - image: ansible/centos7-ansible
     steps:
-      - checkout
-      - run:
-          name: Greeting
-          command: echo Hello, word!!!
-      - run:
-          name: Print The Current time
-          command: date
-      - run:
-      	  name: Ansible ping
-      	  command: ansible-playbook ping.yml
-
+        - checkout
+        - run:
+            name: Greeting
+            command: echo Hello, word!!!
+        - run:
+            name: Print The Current time
+            command: date
+        - run:
+            name: Ansible ping
+            command: ansible-playbook ping.yml
 
 workflows:
   version: 2
