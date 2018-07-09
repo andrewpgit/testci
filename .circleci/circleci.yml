@@ -10,8 +10,7 @@ jobs:
           command: echo Hello, word!!!
       - run:
           name: Print The Current time
-        command: date
+          command: date
       - run:
       	  name: Ansible ping
       	  command: ansible-playbook ping.yml
-      	  
