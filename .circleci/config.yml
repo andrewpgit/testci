@@ -13,7 +13,7 @@ jobs:
             command: date
         - run:
             name: Ansible ping
-            command: ansible-playbook ping.yml
+            command: ansible-playbook -i "localhost," -c local ping.yml
 
 workflows:
   version: 2
