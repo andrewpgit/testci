@@ -1,5 +1,5 @@
 node {
   stage('Build') {
-     echo "Test webhook"
+    sh  "echo 'Test webhook'"
   }
 }
