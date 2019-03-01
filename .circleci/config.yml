@@ -2,18 +2,18 @@ version: 2
 jobs:
   build:
     docker:
-      - image: ansible/centos7-ansible
+      - image: centos7
     steps:
         - checkout
         - run:
-            name: Greeting
-            command: echo Hello, word!!!
+            name: Install packages
+            command: yum -y install epel-release && yum -y install rpm-build rpmdevtools git jq libtool-ltdl awscli
         - run:
-            name: Print The Current time
-            command: date
+            name: Create rpmbuild tree
+            command: rpmdev-setuptree && mkdir ~/rpmbuild/RPMS/noarch
         - run:
-            name: Ansible ping
-            command: ansible-playbook -i "localhost," -c local ping.yml
+            name: Show list
+            command: ls -l ~/rpmbuild/RPMS
 
 workflows:
   version: 2
