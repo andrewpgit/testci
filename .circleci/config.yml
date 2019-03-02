@@ -18,6 +18,15 @@ jobs:
             name: Show list
             command: ls -l ~/rpmbuild/RPMS
         - run:
+            name: Install docker
+            command: |
+              set -x
+              VER="18.06.0-ce"
+              curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
+              tar -xz -C /tmp -f  /tmp/docker-$VER.tgz
+              mv /tmp/docker/* /use/bin/
+              
+        - run:
             name: Download container
             command: |
                 docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASS}
