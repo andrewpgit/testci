@@ -28,9 +28,9 @@ jobs:
         - run:
             name: Download container
             command: |
-                IMAGES="mobichord/integration-tem-sftp:1.2.1"
+                IMAGES="integration-tem-sftp:1.2.1"
                 echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-                docker pull ${IMAGES}
+                docker pull mobichord/${IMAGES}
                 docker images
                 docker save -o=${IMAGES}.tar ${IMAGES}
 
