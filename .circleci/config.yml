@@ -29,7 +29,7 @@ jobs:
         - run:
             name: Download container
             command: |
-                echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+                docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASS"
                 docker pull mobichord/integration-tem-sftp:1.2.1
                 docker images
 
