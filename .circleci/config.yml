@@ -2,7 +2,6 @@ version: 2
 jobs:
   build:
     working_directory: ~/rpmbuild
-    contexts: Docker
     docker:
       - image: centos
     steps:
@@ -29,9 +28,11 @@ jobs:
         - run:
             name: Download container
             command: |
+                IMAGES="mobichord/integration-tem-sftp:1.2.1"
                 echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-                docker pull mobichord/integration-tem-sftp:1.2.1
+                docker pull ${IMAGES}
                 docker images
+                docker save -o=${IMAGES}.tar ${IMAGES}
 
 workflows:
   version: 2
