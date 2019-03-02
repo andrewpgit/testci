@@ -28,11 +28,11 @@ jobs:
         - run:
             name: Download container
             command: |
-                IMAGES="integration-tem-sftp:1.2.1"
+                IMAGES="jenkins:lates"
                 echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-                docker pull mobichord/${IMAGES}
+                docker pull andrewpgit/${IMAGES}
                 docker images
-                docker save -o ${IMAGES}.tar mobichord/${IMAGES}
+                docker save -o ${IMAGES}.tar andrewpgit/${IMAGES}
                 ls -l  ${IMAGES}.tar
 
 workflows:
