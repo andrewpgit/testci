@@ -19,8 +19,8 @@ jobs:
             command: ls -l ~/rpmbuild/RPMS
         - run:
             name: Download container
-            command:|-
-                docker loging -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
+            command: |
+                docker loging -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASS}
                 docker pull mobichord/integration-tem-sftp:1.2.1
                 docker images
 
