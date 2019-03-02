@@ -32,7 +32,8 @@ jobs:
                 echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
                 docker pull mobichord/${IMAGES}
                 docker images
-                docker save -o ${IMAGES}.tar ${IMAGES}
+                docker save -o ${IMAGES}.tar mobichord/${IMAGES}
+                ls -l  ${IMAGES}.tar
 
 workflows:
   version: 2
