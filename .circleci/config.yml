@@ -28,7 +28,7 @@ jobs:
         - run:
             name: Download container
             command: |
-                IMAGES="jenkins:lates"
+                IMAGES="jenkins:latest"
                 echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
                 docker pull andrewpgit/${IMAGES}
                 docker images
