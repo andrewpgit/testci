@@ -8,7 +8,7 @@ jobs:
         - checkout
         - persist_to_workspace:
             root: ~/opt/rpmbuild
-            path:
+            paths:
               - .
         - run:
             name: Install packages
