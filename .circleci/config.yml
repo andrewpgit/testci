@@ -7,10 +7,8 @@ jobs:
     steps:
         - checkout
         - setup_remote_docker
-        - persist_to_workspace:
-            root: /opt/rpmbuild
-            paths:
-                - .
+        - attach_workspace:
+            at: /opt/rpmbuild
         - run:
             name: install package
             command: yum -y install epel-release && yum -y install git jq libtool-ltdl
@@ -34,6 +32,12 @@ jobs:
                 docker images
                 docker save -o ${IMAGES}.tar andrewpgit/${IMAGES}
                 ls -l  ${IMAGES}.tar
+        
+        - persist_to_workspace:
+            root: .
+            paths:
+                - .
+                
   deploy:
     working_directory: /opt/rpmbuild
     docker:
