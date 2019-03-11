@@ -10,7 +10,7 @@ jobs:
         - persist_to_workspace:
             root: /opt/rpmbuild
             paths:
-                - dist
+                - .
         - run:
             name: install package
             command: yum -y install epel-release && yum -y install git jq libtool-ltdl
@@ -29,8 +29,8 @@ jobs:
            command: |
                 IMAGES="jenkins:latest"
                 echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-                cd dist && mkdir images
-                cd images && docker pull andrewpgit/${IMAGES}
+                mkdir -p dist/images
+                cd dist/images && docker pull andrewpgit/${IMAGES}
                 docker images
                 docker save -o ${IMAGES}.tar andrewpgit/${IMAGES}
                 ls -l  ${IMAGES}.tar
