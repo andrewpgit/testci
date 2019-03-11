@@ -25,16 +25,16 @@ jobs:
               tar -xz -C /tmp -f  /tmp/docker-$VER.tgz
               mv /tmp/docker/* /usr/bin/
               
-        - run:
-            name: Download container
-            command: |
-                IMAGES="jenkins:latest"
-                echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-                docker pull andrewpgit/${IMAGES}
-                docker images
-                docker save -o ${IMAGES}.tar andrewpgit/${IMAGES}
-                ls -l  ${IMAGES}.tar
-  deploy:
+        #- run:
+        #    name: Download container
+        #    command: |
+        #        IMAGES="jenkins:latest"
+        #        echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+        #        docker pull andrewpgit/${IMAGES}
+        #        docker images
+        #        docker save -o ${IMAGES}.tar andrewpgit/${IMAGES}
+        #        ls -l  ${IMAGES}.tar
+  test:
     working_directory: ~/opt/rpmbuild
     docker:
       - image: centos
@@ -49,4 +49,4 @@ workflows:
   build:
     jobs:
       - build
-      - deploy
+      - test
