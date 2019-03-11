@@ -1,16 +1,16 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/opt/rpmbuild
+    working_directory: /opt/rpmbuild
     docker:
       - image: centos
     steps:
         - checkout
         - setup_remote_docker
         - persist_to_workspace:
-            root: .
+            root: /opt/rpmbuild
             paths:
-                - .
+                - dist
         - run:
             name: install package
             command: yum -y install epel-release && yum -y install git jq libtool-ltdl
@@ -29,7 +29,8 @@ jobs:
            command: |
                 IMAGES="jenkins:latest"
                 echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-                docker pull andrewpgit/${IMAGES}
+                cd dist && mkdir images
+                cd images && docker pull andrewpgit/${IMAGES}
                 docker images
                 docker save -o ${IMAGES}.tar andrewpgit/${IMAGES}
                 ls -l  ${IMAGES}.tar
@@ -55,7 +56,8 @@ jobs:
       - run:
           name: List
           command: |  
-            ls -l  
+            ls -l  dist/
+            ls -l  dist/images
             ls -l ~/rpmbuild/RPMS/noarch
       
 workflows:
