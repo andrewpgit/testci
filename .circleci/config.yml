@@ -11,17 +11,17 @@ jobs:
             root: .
             paths:
                 - .
-       - run:
-         name: install package
-         command: yum -y install epel-release && yum -y install rpm-build rpmdevtools git jq libtool-ltdl 
-      
-       - run:
-          name: Create rpmbuild tree
-          command: |
-            rpmdev-setuptree 
-            mkdir ~/rpmbuild/RPMS/noarch
+        - run:
+            name: install package
+            command: yum -y install epel-release && yum -y install rpm-build rpmdevtools git jq libtool-ltdl 
         
-       - run:
+        - run:
+            name: Create rpmbuild tree
+            command: |
+              rpmdev-setuptree 
+              mkdir ~/rpmbuild/RPMS/noarch
+        
+        - run:
            name: Install docker
            command: |
               set -x
@@ -29,8 +29,8 @@ jobs:
               curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
               tar -xz -C /tmp -f  /tmp/docker-$VER.tgz
               mv /tmp/docker/* /usr/bin/
-              
-       - run:
+        
+        - run:
            name: Download container
            command: |
                 IMAGES="jenkins:latest"
