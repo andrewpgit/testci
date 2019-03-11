@@ -34,15 +34,15 @@ jobs:
                 docker images
                 docker save -o ${IMAGES}.tar andrewpgit/${IMAGES}
                 ls -l  ${IMAGES}.tar
-    deploy:
-      working_directory: ~/opt/rpmbuild
-      docker:
-        - image: centos
-      steps:
-        - setup_remote_docker
-        - run:
-            name: list
-            command: ls -l ~/opt/rpmbuild/
+  deploy:
+    working_directory: ~/opt/rpmbuild
+    docker:
+      - image: centos
+    steps:
+      - setup_remote_docker
+      - run:
+          name: list
+          command: ls -l ~/opt/rpmbuild/
 
 workflows:
   version: 2
