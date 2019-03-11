@@ -10,7 +10,6 @@ jobs:
             root: ~/opt/rpmbuild
             path:
               - .
-        - setup_remote_docker
         - run:
             name: Install packages
             command: yum -y install epel-release && yum -y install rpm-build rpmdevtools git jq libtool-ltdl awscli
@@ -43,12 +42,8 @@ jobs:
     docker:
       - image: centos
     steps:
-      - persist_to_workspace:
-          root: ~/opt/rpmbuild
-          paths:
-            - .
-      - setup_remote_docker
-
+      - attach_workspace:
+          at: ~/opt/rpmbuild
       - run:
           name: list
           command: |
