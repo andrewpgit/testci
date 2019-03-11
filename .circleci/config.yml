@@ -7,6 +7,8 @@ jobs:
     steps:
         - checkout
         - setup_remote_docker
+        - attach_workspace:
+            at: ~/project
         - run:
             name: Install packages
             command: yum -y install epel-release && yum -y install rpm-build rpmdevtools git jq libtool-ltdl awscli
@@ -40,6 +42,8 @@ jobs:
       - image: centos
     steps:
       - setup_remote_docker
+      - attach_workspace:
+          at: ~/project
       - run:
           name: list
           command: ls -l ~/opt/rpmbuild/
