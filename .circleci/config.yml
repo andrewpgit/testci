@@ -43,11 +43,12 @@ jobs:
     docker:
       - image: centos
     steps:
-      - setup_remote_docker
       - persist_to_workspace:
           root: ~/opt/rpmbuild
           paths:
             - .
+      - setup_remote_docker
+
       - run:
           name: list
           command: |
