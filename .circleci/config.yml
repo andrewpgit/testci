@@ -35,13 +35,13 @@ jobs:
                 docker save -o ${IMAGES}.tar andrewpgit/${IMAGES}
                 ls -l  ${IMAGES}.tar
   deploy:
-    working_directory: ~/opt/rpmbuild
+    working_directory: /opt/rpmbuild
     docker:
       - image: centos
     steps:
       - setup_remote_docker
       - attach_workspace:
-          at: .
+          at: /opt/rpmbuild
           
       - run:
           name: Intall packages
