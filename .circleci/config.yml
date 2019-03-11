@@ -1,15 +1,15 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/opt/
+    working_directory: ~/opt/rpmbuild
     docker:
       - image: centos
     steps:
         - checkout
         - persist_to_workspace:
-            root: ~/opt/
+            root: .
             paths:
-              - rpmbuild
+                - .
         - run:
             name: Install packages
             command: yum -y install epel-release && yum -y install rpm-build rpmdevtools git jq libtool-ltdl awscli
@@ -43,7 +43,7 @@ jobs:
       - image: centos
     steps:
       - attach_workspace:
-          at: ~/opt
+          at: .
       - run:
           name: list
           command: |
