@@ -13,12 +13,7 @@ jobs:
         - run:
             name: Install packages
             command: yum -y install epel-release && yum -y install rpm-build rpmdevtools git jq libtool-ltdl awscli
-        - run:
-            name: Create rpmbuild tree
-            command: rpmdev-setuptree && mkdir ~/rpmbuild/RPMS/noarch
-        - run:
-            name: Show list
-            command: ls -l ~/rpmbuild/RPMS
+            
         - run:
             name: Install docker
             command: |
@@ -44,12 +39,19 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+      
       - run:
           name: list
-          command: |
-            pwd
-            ls -l 
-
+          command: pwd
+      
+      - run:
+          name: Create rpmbuild tree
+          command: rpmdev-setuptree && mkdir ~/rpmbuild/RPMS/noarch
+      
+      - run:
+          name: Show list
+          command: ls -l ~/rpmbuild/RPMS
+      
 workflows:
   version: 2
   build:
