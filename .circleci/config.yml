@@ -10,10 +10,7 @@ jobs:
             root: .
             paths:
                 - .
-        - run:
-            name: Install packages
-            command: yum -y install epel-release && yum -y install rpm-build rpmdevtools git jq libtool-ltdl awscli
-            
+                
         - run:
             name: Install docker
             command: |
@@ -41,8 +38,8 @@ jobs:
           at: .
       
       - run:
-          name: list
-          command: pwd
+          name: install package
+          command: yum -y install epel-release && yum -y install rpm-build rpmdevtools git jq libtool-ltdl awscli
       
       - run:
           name: Create rpmbuild tree
@@ -50,7 +47,9 @@ jobs:
       
       - run:
           name: Show list
-          command: ls -l ~/rpmbuild/RPMS
+          command: |
+             ls -l ~/rpmbuild/RPMS
+             ls -l /root/opt/rpmbuild
       
 workflows:
   version: 2
