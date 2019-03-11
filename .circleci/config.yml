@@ -6,6 +6,7 @@ jobs:
       - image: centos
     steps:
         - checkout
+        - setup_remote_docker
         - persist_to_workspace:
             root: .
             paths:
